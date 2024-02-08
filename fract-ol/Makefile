@@ -1,7 +1,7 @@
 NAME	= fractol
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -Imlx
 
 MLX_PATH	= libs/minilibx_opengl_20191021
 MLX			= $(MLX_PATH)/libmlx.a
@@ -25,7 +25,7 @@ makeftprintf:
 	@make -C $(FT_PRINF_PATH)
 
 $(NAME): makemlx makeftprintf $(OBJS)
-	@$(CC) $(CFLAGS) -g -o $(NAME) $(SRCS) $(MLX) $(FT_PRINTF) -framework OpenGL -framework AppKit
+	@$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(MLX) $(FT_PRINTF) -lmlx -framework OpenGL -framework AppKit -L $(MLX_PATH) 
 
 clean:
 	@rm -f $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: abostano <abostano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:16:22 by abostano          #+#    #+#             */
-/*   Updated: 2024/02/08 14:25:31 by abostano         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:30:02 by abostano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,12 @@ int	key_hook(int keycode, t_fractal *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
+	return (0);
+}
+
+int	close_window(t_fractal *fractal)
+{
+	mlx_destroy_window(fractal->mlx, fractal->win);
+	exit(EXIT_SUCCESS);
 	return (0);
 }

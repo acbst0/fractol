@@ -6,17 +6,16 @@
 /*   By: abostano <abostano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 16:36:25 by abostano          #+#    #+#             */
-/*   Updated: 2024/02/08 14:27:58 by abostano         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:30:10 by abostano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# define WIDTH 1600
-# define HEIGHT 1600
-# define MAX_ITER 100
-# define ZOOM_FACTOR 1.1
+# define WIDTH 1250
+# define HEIGHT 1250
+# define MAX_ITER 25
 
 # include "../libs/minilibx_opengl_20191021/mlx.h"
 # include "../libs/ft_printf/ft_printf.h"
@@ -69,5 +68,6 @@ int			mouse_scroll(int button, int x, int y, t_fractal *fractal);
 void		mouse_scroll_two(double zoom_factor, int x, int y,
 				t_fractal *fractal);
 int			key_hook(int keycode, t_fractal *data);
+int			close_window(t_fractal *fractal);
 
 #endif

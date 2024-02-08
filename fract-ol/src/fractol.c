@@ -6,7 +6,7 @@
 /*   By: abostano <abostano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:01:15 by abostano          #+#    #+#             */
-/*   Updated: 2024/02/08 14:12:31 by abostano         ###   ########.fr       */
+/*   Updated: 2024/02/08 18:29:29 by abostano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_color(t_fractal *fractal, int iter, int *color)
 	if (iter == fractal->max_iter)
 		*color = 0x000000;
 	else
-		*color = (iter) * (0x123456);
+		*color = iter * 0x123456;
 }
 
 int	ft_strcmp(char *s1, char *s2)
@@ -39,13 +39,13 @@ void	clean_f(t_fractal *f)
 	f->id = -1;
 	f->mlx = NULL;
 	f->win = NULL;
-	f->width = 800;
-	f->height = 600;
+	f->width = WIDTH;
+	f->height = HEIGHT;
 	f->min_real = -2.0;
-	f->max_real = 2.0;
-	f->min_imag = -1.5;
-	f->max_imag = 1.5;
-	f->max_iter = 100;
+	f->max_real = f->min_real * -1 * WIDTH / HEIGHT;
+	f->min_imag = -2.0;
+	f->max_imag = f->min_imag * -1 * HEIGHT / WIDTH;
+	f->max_iter = MAX_ITER;
 }
 
 void	init_f(t_fractal *f)
@@ -63,9 +63,10 @@ int	main(int argc, char **argv)
 
 	c.real = -0.7;
 	c.imag = 0.27015;
-	if (argc != 2)
+	if (argc != 2 || (ft_strcmp(argv[1], "Mandelbrot") != 0
+			&& ft_strcmp(argv[1], "Julia")) != 0)
 	{
-		ft_printf("Usage: ./fractol [mandelbrot/julia]\n");
+		ft_printf("Usage: ./fractol Mandelbrot\nJulia\n");
 		return (1);
 	}
 	clean_f(&f);
@@ -73,6 +74,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(f.win, mouse_scroll, &f);
 	define_set(argv, &f, c);
 	mlx_key_hook(f.win, key_hook, &f);
+	mlx_hook(f.win, 17, 0, close_window, &f);
 	mlx_put_image_to_window(f.mlx, f.win, f.img, 0, 0);
 	mlx_loop(f.mlx);
 	return (0);
