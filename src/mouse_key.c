@@ -6,7 +6,7 @@
 /*   By: abostano <abostano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 16:16:22 by abostano          #+#    #+#             */
-/*   Updated: 2024/02/08 18:30:02 by abostano         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:19:00 by abostano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	mouse_scroll(int button, int x, int y, t_fractal *fractal)
 	mouse_scroll_two(zoom_factor, x, y, fractal);
 	mlx_clear_window(fractal->mlx, fractal->win);
 	if (fractal->id == 1)
-		draw_julia(fractal, (t_complex){-0.7, 0.27015});
+		draw_julia(fractal, fractal->c);
 	else if (fractal->id == 0)
 		draw_mandelbrot(fractal);
 	mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);

@@ -13,6 +13,7 @@ SRCS	= src/fractal_types.c \
 		  src/fractol.c \
 		  src/img_num.c \
 		  src/mouse_key.c \
+		  src/utils.c \
 
 OBJS	= $(SRCS:.c=.o)
 
